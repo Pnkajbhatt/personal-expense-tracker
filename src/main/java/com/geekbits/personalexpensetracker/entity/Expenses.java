@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -24,7 +25,7 @@ public class Expenses {
 
     @NotNull(message = "amount is required")
     @Column(name = "amount", nullable = false, precision = 10, scale = 2)
-    private Double amount;
+    private BigDecimal amount;
 
 
     @NotNull(message = "category is required")
