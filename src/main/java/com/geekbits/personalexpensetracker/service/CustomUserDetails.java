@@ -1,12 +1,12 @@
 package com.geekbits.personalexpensetracker.service;
 
-import com.geekbits.personalexpensetracker.entity.User;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.geekbits.personalexpensetracker.entity.User;
 
 public class CustomUserDetails implements UserDetails {
     private final User user;
@@ -14,7 +14,6 @@ public class CustomUserDetails implements UserDetails {
     public CustomUserDetails(User user) {
         this.user = user;
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -31,5 +30,23 @@ public class CustomUserDetails implements UserDetails {
         return user.getEmail(); // or user.getUsername()
     }
 
-    // Other methods (isEnabled, etc.) based on User entity
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
